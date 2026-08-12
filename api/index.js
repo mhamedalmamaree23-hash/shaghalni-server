@@ -8,11 +8,7 @@ app.use(express.json());
 let jobs = [];
 
 app.get('/', (req, res) => {
-  res.send('Shaghalni Server is Running!');
-});
-
-app.get('/api', (req, res) => {
-  res.send('Shaghalni Server is Running!');
+  res.send('Shaghalni Server is Running! - قائد');
 });
 
 app.get('/jobs', (req, res) => {
@@ -20,12 +16,8 @@ app.get('/jobs', (req, res) => {
 });
 
 app.post('/jobs', (req, res) => {
-  const job = { 
-    id: Date.now(), 
-    ...req.body, 
-    date: new Date().toLocaleDateString('ar-IQ') 
-  };
-  jobs.push(job);
+  const job = { id: Date.now(), ...req.body, date: new Date().toLocaleDateString('ar-IQ') };
+  jobs.unshift(job);
   res.json({ success: true, job });
 });
 
